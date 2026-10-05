@@ -8,6 +8,7 @@ import sys
 
 
 ROOT = Path(__file__).resolve().parents[1]
+PUBLIC_BASE = "https://noob-debug-cyber.github.io/milhon-site/"
 
 
 class Page(HTMLParser):
@@ -23,6 +24,8 @@ class Page(HTMLParser):
         self.has_title = False
         self.has_viewport = False
         self.has_icon = False
+        self.has_description = False
+        self.canonicals = []
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
@@ -41,6 +44,10 @@ class Page(HTMLParser):
             self.has_title = True
         elif tag == "meta" and attrs.get("name") == "viewport":
             self.has_viewport = True
+        elif tag == "meta" and attrs.get("name") == "description":
+            self.has_description = bool(attrs.get("content", "").strip())
+        elif tag == "link" and "canonical" in attrs.get("rel", "").split():
+            self.canonicals.append(attrs.get("href"))
         elif tag == "link" and "icon" in attrs.get("rel", "").split():
             self.has_icon = True
         elif tag == "img" and "alt" not in attrs:
@@ -65,6 +72,9 @@ def check():
             "missing page title": page.has_title,
             "missing viewport": page.has_viewport,
             "missing favicon": page.has_icon,
+            "missing page description": page.has_description,
+            "canonical URL does not match the public page": page.canonicals
+            == [PUBLIC_BASE + ("" if path.name == "index.html" else path.name)],
         }
         errors.extend(f"{path.name}: {message}" for message in page.errors)
         errors.extend(f"{path.name}: {message}" for message, ok in requirements.items() if not ok)
