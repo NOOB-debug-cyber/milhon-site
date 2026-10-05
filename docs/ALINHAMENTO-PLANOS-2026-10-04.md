@@ -16,7 +16,7 @@ O preço exibido vem da Apple de forma localizada; o site não copia valores ou 
 
 ## Fontes e compatibilidade
 
-Referência atual: [app PR #46](https://github.com/NOOB-debug-cyber/milhon-app/pull/46), SHA `209f6c708bf04634641964332c06254991ee91e0`. Foram relidos dez arquivos de fonte/documentação e o gerador de documentos nesse SHA, sem executar código do app. O inventário anterior de dados locais foi confrontado com o complemento documental de 05/10/2026; o pacote privado não é copiado para este repositório.
+Referência de compatibilidade: [app PR #46](https://github.com/NOOB-debug-cyber/milhon-app/pull/46), SHA `209f6c708bf04634641964332c06254991ee91e0`. Foram relidos dez arquivos de fonte/documentação e o gerador de documentos nesse SHA, sem executar código do app. O inventário anterior de dados locais foi confrontado com o complemento documental de 05/10/2026; o pacote privado não é copiado para este repositório.
 
 | Tema | Fonte confirmada | Resultado para o site |
 | --- | --- | --- |
@@ -30,7 +30,9 @@ Referência atual: [app PR #46](https://github.com/NOOB-debug-cyber/milhon-app/p
 
 Os Markdown históricos `PRIVACY-POLICY-DRAFT.md` e `APP-STORE-METADATA-PT-BR.md` ainda contêm campos ou frases antigas. A documentação gerada no PR #46 distingue pagamento de acesso pela Apple de pagamentos de apostas, que não são oferecidos. Esses Markdown não devem substituir automaticamente os textos finais gerados e reconciliados.
 
-O complemento identifica ajustes a fazer no DOCX de privacidade: explicitar acesso autorizado na atualização inicial, diagnóstico em memória, atendimento/hospedagem e compartilhamento de backup. Essas informações já existem no site. O patch visual do documento e sua página de controle interno pertencem à coordenação documental do app; não são integrados por este lote.
+O PR #46 foi integrado com o follow-up `8f2706b3d010ff9d03f87e691a7b595b700ada15`, merge `97e0f346e38abb09b1c033de27543b1a7308fbd8`. A comparação com `209f6c7` contém somente o patch de paginação/banner do gerador e suas referências de integridade no tooling, sem mudança de código de licença, diagnóstico, suporte ou backup. O gerador integrado é idêntico ao overlay do complemento, SHA-256 `37df9995418f8095e4c9b2982bba757871b7644d9ede04f99471565c676ae9c1`.
+
+O complemento identifica ajustes a fazer no DOCX de privacidade: explicitar acesso autorizado na atualização inicial, diagnóstico em memória, atendimento/hospedagem e compartilhamento de backup. Essas informações já existem no site. O patch visual já integrado pertence à coordenação documental do app. A reconciliação do corpo e a remoção da página de controle interno do documento público continuam nessa etapa; este lote não altera o app.
 
 ## Data, vigência e publicação
 
