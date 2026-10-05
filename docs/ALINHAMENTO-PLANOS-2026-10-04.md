@@ -1,59 +1,49 @@
-# Alinhamento da candidata do site — 04/10/2026
+# Alinhamento do site — revisão documental de 05/10/2026
 
-Escopo: páginas e documentação do site Milhon, com CI estático. A versão publicada permanece na `main` até revisão e coordenação de publicação. Esta é uma revisão editorial e técnica, não um parecer legal. O aplicativo e seus cadastros na Apple não são alterados neste lote.
+Escopo: site Milhon e documentação de revisão. A versão publicada permanece na `main` até a revisão do novo delta e a coordenação de publicação. Esta é uma revisão editorial e técnica, não um parecer legal. App, Apple e outros produtos não são alterados neste lote.
 
-## Modelo confirmado para esta candidata
+## Modelo confirmado
 
-As ferramentas de uso são pagas e exigem licença válida. Compra, restauração, termos, privacidade e suporte ficam acessíveis antes da licença. Mensal, anual e vitalício dão acesso ao mesmo conjunto de ferramentas, com modalidades de acesso diferentes. Os identificadores abaixo são os encontrados na fonte do app; esta conferência não comprova o estado dos produtos no App Store Connect.
+Todas as ferramentas de uso são pagas e exigem licença válida. Compra, restauração, termos, privacidade e suporte ficam acessíveis antes da licença. Os três planos dão acesso ao mesmo conjunto de ferramentas. Não se criam promessas de manutenção permanente, novos serviços, conversão, crédito, reembolso ou cancelamento automático de outra modalidade.
 
-| Modalidade | Identificador na fonte | Tipo na integração |
+| Modalidade | Identificador na fonte | Natureza do acesso |
 | --- | --- | --- |
-| Mensal | `com.leonardo.milhon.acesso.mensal` | Assinatura renovável, mensal |
-| Anual | `com.leonardo.milhon.acesso.anual` | Assinatura renovável, anual |
-| Vitalício | `com.leonardo.milhon.acesso.vitalicio` | Compra não consumível, sem renovação automática |
+| Mensal | `com.leonardo.milhon.acesso.mensal` | Assinatura mensal, renovação automática |
+| Anual | `com.leonardo.milhon.acesso.anual` | Assinatura anual, renovação automática |
+| Vitalício | `com.leonardo.milhon.acesso.vitalicio` | Compra não consumível, pagamento único, sem renovação ou expiração artificial; respeita revogação/reembolso pela Apple |
 
-O preço exibido vem de `Product.displayPrice`/`precoLocalizado`. Não se copiam valores ou cálculos de economia de protótipos para o site. O gateway examinado permite compra somente em Xcode StoreKit Testing ou Sandbox e recusa produção. O site descreve a modalidade em preparação, sem declarar lançamento ou cobrança ativa.
+O preço exibido vem da Apple de forma localizada; o site não copia valores ou cálculos de economia de protótipos. Identificadores encontrados na fonte não comprovam o estado atual dos produtos no App Store Connect. A preparação de produção continua distinta de lançamento, contratação ativa e validação do build distribuído.
 
-Fonte fixa: [PR #45 do aplicativo](https://github.com/NOOB-debug-cyber/milhon-app/pull/45), examinado no SHA `bbd88c7f672e0056ccfe29b15514e390fbe25116`. A referência é uma candidata em qualificação, não uma versão distribuída. Foram consultados, nesse SHA, os seguintes grupos:
+## Fontes e compatibilidade
 
-| Informação | Fontes do app |
-| --- | --- |
-| IDs, tipos e preço localizado | [`catalogoCompras.js`](https://github.com/NOOB-debug-cyber/milhon-app/blob/bbd88c7f672e0056ccfe29b15514e390fbe25116/src/composition/catalogoCompras.js), [`MilhonStoreKitModule.swift`](https://github.com/NOOB-debug-cyber/milhon-app/blob/bbd88c7f672e0056ccfe29b15514e390fbe25116/modules/milhon-storekit/ios/MilhonStoreKitModule.swift), [`MilhonStoreKitGateway.swift`](https://github.com/NOOB-debug-cyber/milhon-app/blob/bbd88c7f672e0056ccfe29b15514e390fbe25116/modules/milhon-storekit/ios/Core/MilhonStoreKitGateway.swift), `PlanosScreen.js` |
-| Acesso e operações antes da licença | [`App.js`](https://github.com/NOOB-debug-cyber/milhon-app/blob/bbd88c7f672e0056ccfe29b15514e390fbe25116/App.js), `PlanosScreen.js`, `src/application/comprasMilhon.js`, `src/domain/comprasMilhon.js` |
-| Dados de compra no aparelho | `MilhonStoreKitGateway.swift`, `StoreKitBridgeValues.swift`, `src/application/comprasMilhon.js`: produto, transação, datas e estados; direitos em memória, sem storage na aplicação de compras |
-| Acervo e backup separados da licença | `src/storage/persist.js`, `backup.js`, `arquivosBackup.js`: dados locais; JSON de acervo; cópia temporária para compartilhamento no aparelho; destino escolhido pelo usuário |
-| Fonte pública e diagnóstico | `src/infrastructure/caixaClient.js`, `diagnostico.js`, `App.js`: consultas à CAIXA após acesso autorizado; diagnóstico limitado em memória, sem telemetria automática ou identificadores de compra |
-| Privacidade declarada e URLs | [`politicaPublicacao.js`](https://github.com/NOOB-debug-cyber/milhon-app/blob/bbd88c7f672e0056ccfe29b15514e390fbe25116/src/domain/politicaPublicacao.js), `app.json`, `app.config.js`, `package.json`, documentos comerciais e de privacidade |
+Referência atual: [app PR #46](https://github.com/NOOB-debug-cyber/milhon-app/pull/46), SHA `209f6c708bf04634641964332c06254991ee91e0`. Foram relidos dez arquivos de fonte/documentação e o gerador de documentos nesse SHA, sem executar código do app. O inventário anterior de dados locais foi confrontado com o complemento documental de 05/10/2026; o pacote privado não é copiado para este repositório.
 
-Esse inventário de fonte fundamenta a candidata textual. Ele não substitui a conferência do IPA final, dos manifests de SDK, de App Privacy ou dos produtos efetivos da loja. Não se declara ausência absoluta de tratamento de dados: Apple, CAIXA, hospedagem, destino de backup e contato de suporte têm fluxos próprios.
+| Tema | Fonte confirmada | Resultado para o site |
+| --- | --- | --- |
+| Licença e preços | `src/composition/catalogoCompras.js`, `src/application/comprasMilhon.js`, `docs/APRESENTACAO-E-PLANOS.md` | Três modalidades, mesmo conjunto de ferramentas, preço localizado e restauração separada do backup |
+| Compras nativas | [MilhonStoreKitGateway.swift](https://github.com/NOOB-debug-cyber/milhon-app/blob/209f6c708bf04634641964332c06254991ee91e0/modules/milhon-storekit/ios/Core/MilhonStoreKitGateway.swift) | Sandbox/produção somente com identidade verificada do Milhon; isso não comprova compra real ou qualificação de distribuição |
+| Dados de licença | Gateway e `src/application/comprasMilhon.js` | Produto, transação, datas, estados, comparação de identificador original e ambiente; estado de acesso em memória, sem backend próprio de validação ou licença no backup JSON |
+| Consulta CAIXA | [App.js](https://github.com/NOOB-debug-cyber/milhon-app/blob/209f6c708bf04634641964332c06254991ee91e0/App.js) | Atualização condicionada ao acesso autorizado, já descrita em privacidade item 3 |
+| Diagnóstico | `src/infrastructure/diagnostico.js` | Eventos limitados em memória, sem telemetria automática ou identificadores de compra, já descritos no item 5 |
+| Suporte, hospedagem e backups | Manual/política gerados por [build_publication_docs.py](https://github.com/NOOB-debug-cyber/milhon-app/blob/209f6c708bf04634641964332c06254991ee91e0/scripts/build_publication_docs.py), complemento documental e `src/storage/backup.js` | Site já descreve atendimento por e-mail, GitHub Pages, retenção por necessidade e exportação escolhida pelo usuário |
+| URLs | [politicaPublicacao.js](https://github.com/NOOB-debug-cyber/milhon-app/blob/209f6c708bf04634641964332c06254991ee91e0/src/domain/politicaPublicacao.js) | Site, termos, privacidade e suporte HTTPS coincidem com o app candidato; o contato por e-mail continua disponível |
 
-## URLs e metadados
+Os Markdown históricos `PRIVACY-POLICY-DRAFT.md` e `APP-STORE-METADATA-PT-BR.md` ainda contêm campos ou frases antigas. A documentação gerada no PR #46 distingue pagamento de acesso pela Apple de pagamentos de apostas, que não são oferecidos. Esses Markdown não devem substituir automaticamente os textos finais gerados e reconciliados.
 
-As cinco páginas têm descrição específica e URL canônica HTTPS no domínio existente. A home usa a raiz `/milhon-site/`; termos, privacidade, comercial e suporte mantêm os arquivos `.html`. O [README](../README.md) contém o mapa completo para os metadados da loja. Não foi inventado link de produto na App Store.
+O complemento identifica ajustes a fazer no DOCX de privacidade: explicitar acesso autorizado na atualização inicial, diagnóstico em memória, atendimento/hospedagem e compartilhamento de backup. Essas informações já existem no site. O patch visual do documento e sua página de controle interno pertencem à coordenação documental do app; não são integrados por este lote.
 
-Os [itens 1.5 e 2.1 das diretrizes de revisão Apple](https://developer.apple.com/app-store/review/guidelines/) foram consultados para contato de suporte e URLs funcionais. O estado de candidata e os pontos ainda em preparação precisam ser resolvidos antes de tratar estes textos como metadados finais de uma submissão.
+## Data, vigência e publicação
 
-`URLS_MILHON.site`, `termos` e `privacidade` no app correspondem às URLs canônicas do site. `URLS_MILHON.suporte` ainda é `mailto:cabralmoreirao23@icloud.com`: é um contato funcional, não a página HTTPS de suporte. A coordenação do app precisa decidir a navegação nativa e confirmar `https://noob-debug-cyber.github.io/milhon-site/suporte.html` no campo de suporte da loja. Nenhum campo do App Store Connect foi lido ou alterado por este lote.
+05/10/2026 é a data desta revisão documental, não uma declaração de vigência passada ou de lançamento. Os textos passam a valer quando esta versão for publicada no endereço correspondente. O recibo de deploy deve registrar a data efetiva e confirmar a correspondência com a versão pública dos documentos. Foram retiradas dos textos públicos as instruções de revisão interna; a preparação do aplicativo continua declarada enquanto refletir seu estado real.
 
-Os documentos do app `APP-STORE-METADATA-PT-BR.md`, `PRIVACY-POLICY-DRAFT.md` e `APRESENTACAO-E-PLANOS.md` ainda contêm afirmações anteriores à integração, como ausência de pagamentos/StoreKit ou preços fixos de protótipo. Precisam ser alinhados na etapa do app: pagamento de acesso pela Apple deve ser distinguido de pagamentos de apostas, que não são oferecidos. Não copiar essas afirmações antigas para a candidata do site.
+As páginas mantêm as URLs HTTPS existentes, descrições específicas e URL canônica. O [README](../README.md) contém o mapa para os metadados da loja. A conferência de suporte/privacidade pública deve comprovar resposta, conteúdo e acesso sem login por navegador permitido; falha de túnel/proxy ou de ferramenta web não comprova indisponibilidade do site.
 
-## Lacunas precisas antes da oferta final
+Antes do merge, revisar o novo delta sobre o SHA de site anteriormente revisto `d4bc3f0f4f36a2e841f6c22b8fe68b59ce2462ad`. Depois da publicação coordenada, conferir os URLs públicos e a data efetiva; a confirmação dos campos no App Store Connect e no build distribuído permanece na etapa do app. Inventário de fonte não substitui IPA final, manifests de SDK, App Privacy ou catálogo efetivo da loja.
 
-| Ponto | O que ainda precisa de confirmação coordenada |
-| --- | --- |
-| Alcance do vitalício | Redação final do direito de acesso, futuras versões e manutenção, sem transformar um nome de produto em promessa contratual não definida |
-| Mudança entre modalidades | Tratamento de assinatura existente ao adquirir vitalício e demais transições, sem prometer cancelamento, crédito, conversão ou reembolso automático |
-| Oferta efetiva | Disponibilidade, territórios, produtos aprovados e preços localizados retornados pela Apple; este lote não define ou altera preços, grupos ou níveis |
-| Versão distribuível e privacidade | Revalidar os fluxos contra o artefato final e conferir manifests/App Privacy; a descrição não comprova qualificação de produção |
-| Metadados da loja | Confirmar URLs de termos, privacidade e suporte HTTPS, descrição paga e contato no portal, além da revisão dos documentos do app |
-| Publicação dos textos | Revisar os termos, retirar o estado de candidata apenas quando autorizado e publicar em coordenação com a versão correspondente; a `main` atual permanece preservada |
+## Fontes externas
 
-## Fontes externas consultadas em 04/10/2026
+Os [tipos de compra da Apple](https://developer.apple.com/help/app-store-connect/reference/in-app-purchases-and-subscriptions/in-app-purchase-types/) e a [orientação de assinaturas](https://developer.apple.com/app-store/subscriptions/) fundamentam a distinção de modalidade, duração, preço localizado, restauração e links legais. Não se configura produto, grupo ou nível com base nesta nota.
 
-A distinção entre assinatura renovável e compra não consumível segue os [tipos de compra da Apple](https://developer.apple.com/help/app-store-connect/reference/in-app-purchases-and-subscriptions/in-app-purchase-types/). A apresentação de duração, preço localizado, restauração e links legais foi confrontada com a [orientação Apple para assinaturas](https://developer.apple.com/app-store/subscriptions/). Não se configura produto ou mudança de nível com base nesta nota.
+As orientações de atendimento remetem aos guias Apple de [cancelamento](https://support.apple.com/pt-br/118428), [restauração](https://support.apple.com/pt-br/108096) e [reembolso](https://support.apple.com/pt-br/118223). Permanecem preservados o atendimento pelo responsável e os direitos aplicáveis. A revisão não cria decisões ou prazos de reembolso da Apple.
 
-As orientações de atendimento remetem aos guias Apple de [cancelamento](https://support.apple.com/pt-br/118428), [restauração](https://support.apple.com/pt-br/108096) e [reembolso](https://support.apple.com/pt-br/118223). A candidata mantém o atendimento pelo responsável e os direitos aplicáveis, sem prometer decisões ou prazos da Apple.
-
-A revisão preserva informação clara e direitos obrigatórios conforme o [CDC, especialmente arts. 30, 31, 46 e 49](https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm), sem criar cláusulas de renúncia. Finalidade, responsável, contato e direitos na política foram confrontados com a [LGPD, especialmente arts. 7, 9, 10, 16 e 18](https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm). A aplicação jurídica concreta e a oferta final seguem para revisão coordenada.
-
-Os fluxos próprios dos provedores permanecem referenciados nas políticas de [Apple](https://www.apple.com/legal/privacy/) e [GitHub](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement). O site não adiciona scripts de analytics, anúncios ou formulários.
+As referências jurídicas anteriores — [CDC](https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm) e [LGPD](https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm) — e os links às políticas de [Apple](https://www.apple.com/legal/privacy/) e [GitHub](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement) permanecem. O delta não introduz cláusulas de renúncia ou uma nova interpretação jurídica.
